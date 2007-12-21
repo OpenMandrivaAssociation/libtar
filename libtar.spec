@@ -12,6 +12,7 @@ Patch1: libtar-1.2.11-64bit-fixes.patch.bz2
 License: BSD
 Group: System/Libraries
 URL: http://www.feep.net/libtar/
+BuildRoot: %{_tmppath}/%{name}-buildroot
 BuildRequires: zlib-devel
 
 %description
