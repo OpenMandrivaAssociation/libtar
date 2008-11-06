@@ -1,13 +1,12 @@
 Summary:	C library for manipulating tar files
 Name:		libtar
 Version:	1.2.11
-Release:	%mkrel 8
+Release:	%mkrel 9
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.feep.net/libtar/
 Source0:	ftp://ftp.feep.net/pub/software/libtar/%{name}-%{version}.tar.bz2
 Patch0:		libtar-1.2.11-includes.patch
-Patch1:		libtar-1.2.11-64bit-fixes.patch
 BuildRequires:	zlib-devel
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 
@@ -30,7 +29,6 @@ build applications with libtar.
 %prep
 %setup -q
 %patch0 -p1 -b .includes
-%patch1 -p1 -b .64bit-fixes
 
 %build
 export CFLAGS="%{optflags} -fPIC"
