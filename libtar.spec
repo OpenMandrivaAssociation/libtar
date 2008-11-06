@@ -21,7 +21,7 @@ Here are some of its features:
 
 %package devel
 Summary:	Development files and headers for %{name}
-Group:	Development/C
+Group:		Development/C
 %description devel
 This package contains the static library and the C headers needed to
 build applications with libtar.
