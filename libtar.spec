@@ -1,7 +1,7 @@
 Summary:	C library for manipulating tar files
 Name:		libtar
 Version:	1.2.11
-Release:	%mkrel 11
+Release:	%mkrel 12
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.feep.net/libtar/
