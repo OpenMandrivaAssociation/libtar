@@ -1,0 +1,20 @@
+--- libtar-1.2.11/lib/extract.c.includes	2003-03-03 00:58:07.000000000 +0100
++++ libtar-1.2.11/lib/extract.c	2005-07-21 16:50:20.000000000 +0200
+@@ -20,6 +20,7 @@
+ #include <utime.h>
+ 
+ #ifdef STDC_HEADERS
++# include <string.h>
+ # include <stdlib.h>
+ #endif
+ 
+--- libtar-1.2.11/libtar/libtar.c.includes	2003-01-07 02:41:00.000000000 +0100
++++ libtar-1.2.11/libtar/libtar.c	2005-07-21 16:57:21.000000000 +0200
+@@ -20,6 +20,7 @@
+ 
+ #ifdef STDC_HEADERS
+ # include <string.h>
++# include <stdlib.h>
+ #endif
+ 
+ #ifdef HAVE_UNISTD_H
