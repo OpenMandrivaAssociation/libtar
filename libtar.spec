@@ -3,7 +3,7 @@
 Summary:	C library for manipulating tar files
 Name:		libtar
 Version:	1.2.11
-Release:	%mkrel 14
+Release:	15
 License:	BSD
 Group:		System/Libraries
 URL:		http://www.feep.net/libtar/
@@ -23,6 +23,7 @@ Here are some of its features:
 %package devel
 Summary:	Development files and headers for %{name}
 Group:		Development/C
+
 %description devel
 This package contains the static library and the C headers needed to
 build applications with libtar.
