@@ -6,10 +6,10 @@ Version:	1.2.11
 Release:	15
 License:	BSD
 Group:		System/Libraries
-URL:		http://www.feep.net/libtar/
-Source0:	ftp://ftp.feep.net/pub/software/libtar/%{name}-%{version}.tar.bz2
+Url:		http://www.feep.net/libtar/
+Source0:	ftp://ftp.feep.net/pub/software/libtar/%{name}-%{version}.tar.gz
 Patch0:		libtar-1.2.11-includes.patch
-BuildRequires:	zlib-devel
+BuildRequires:	pkgconfig(zlib)
 
 %description
 libtar is a library for manipulating tar files from within C programs.
@@ -30,7 +30,7 @@ build applications with libtar.
 
 %prep
 %setup -q
-%patch0 -p1 -b .includes
+%apply_patches
 
 %build
 export CFLAGS="%{optflags} -fPIC"
@@ -48,3 +48,4 @@ export CFLAGS="%{optflags} -fPIC"
 %{_includedir}/libtar*.h
 %{_libdir}/libtar.a
 %{_mandir}/man3/*.3*
+
