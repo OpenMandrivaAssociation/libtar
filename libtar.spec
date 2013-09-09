@@ -1,9 +1,11 @@
 %define debug_package	%nil
 
+%define sdevname %mklibname tar -d -s
+
 Summary:	C library for manipulating tar files
 Name:		libtar
 Version:	1.2.11
-Release:	15
+Release:	16
 License:	BSD
 Group:		System/Libraries
 Url:		http://www.feep.net/libtar/
@@ -20,13 +22,28 @@ Here are some of its features:
   * Also provides functions for more granular use, such as 
     tar_append_regfile().
 
-%package devel
+%files
+%{_bindir}/libtar
+
+#----------------------------------------------------------------------------
+
+%package -n %{sdevname}
 Summary:	Development files and headers for %{name}
 Group:		Development/C
+Obsoletes:	%{name}-devel < 1.2.11-16
+Provides:	%{name}-devel = %{EVRD}
 
-%description devel
+%description -n %{sdevname}
 This package contains the static library and the C headers needed to
 build applications with libtar.
+
+%files -n %{sdevname}
+%doc README ChangeLog* COPYRIGHT TODO
+%{_includedir}/libtar*.h
+%{_libdir}/libtar.a
+%{_mandir}/man3/*.3*
+
+#----------------------------------------------------------------------------
 
 %prep
 %setup -q
@@ -39,13 +56,4 @@ export CFLAGS="%{optflags} -fPIC"
 
 %install
 %makeinstall_std
-
-%files
-%{_bindir}/libtar
-
-%files devel
-%doc README ChangeLog* COPYRIGHT TODO
-%{_includedir}/libtar*.h
-%{_libdir}/libtar.a
-%{_mandir}/man3/*.3*
 
