@@ -1,4 +1,5 @@
 removed_sources:
   libtar-1.2.11.tar.bz2: eafa07a5c8f3002043138a7442c321db3379b6f9
-sources:
   libtar-1.2.11.tar.gz: 9611f23024b0e89aad1cfea301122186b3c160f8
+sources:
+  libtar-1.2.20.tar.gz: 5969c1fa256ebada17ff0dc450492cd5b96160c4
