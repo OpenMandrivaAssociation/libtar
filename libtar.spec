@@ -7,7 +7,7 @@
 Summary:	C library for manipulating tar files
 Name:		libtar
 Version:	1.2.20
-Release:	3
+Release:	4
 License:	BSD
 Group:		System/Libraries
 Url:		http://www.feep.net/libtar/
