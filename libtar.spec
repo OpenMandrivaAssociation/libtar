@@ -7,7 +7,7 @@
 Summary:	C library for manipulating tar files
 Name:		libtar
 Version:	1.2.20
-Release:	5
+Release:	6
 License:	BSD
 Group:		System/Libraries
 Url:		http://www.feep.net/libtar/
@@ -40,8 +40,8 @@ Here are some of its features:
 %package -n %{sdevname}
 Summary:	Development files and headers for %{name}
 Group:		Development/C
-Obsoletes:	%{name}-devel < 1.2.11-16
-Provides:	%{name}-devel = %{EVRD}
+Obsoletes:	%{name}-static-devel < 1.2.11-16
+Provides:	%{name}-static-devel = %{EVRD}
 
 %description -n %{sdevname}
 This package contains the static library and the C headers needed to
