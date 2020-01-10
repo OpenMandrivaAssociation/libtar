@@ -81,7 +81,7 @@ build applications with libtar.
 #----------------------------------------------------------------------------
 %prep
 %setup -qn %{name}
-%apply_patches
+%autopatch -p1
 
 %build
 # set correct version for .so build
