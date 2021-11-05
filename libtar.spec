@@ -12,13 +12,13 @@ License:	BSD
 Group:		System/Libraries
 Url:		http://www.feep.net/libtar/
 Source0:	ftp://ftp.feep.net/pub/software/libtar/%{name}-%{version}.tar.gz
-Patch1:         libtar-1.2.11-missing-protos.patch
-Patch2:         libtar-macro.patch
-Patch4:         libtar-1.2.11-mem-deref.patch
-Patch5:         libtar-1.2.20-fix-memleak.patch
-Patch6:         libtar-1.2.11-bz729009.patch
-Patch7:         libtar-1.2.11-bz785760.patch
-Patch8:		libtar-1.2.20-includes.patch
+Patch1:		https://src.fedoraproject.org/rpms/libtar/raw/rawhide/f/libtar-1.2.11-missing-protos.patch
+Patch2:		https://src.fedoraproject.org/rpms/libtar/raw/rawhide/f/libtar-1.2.11-mem-deref.patch
+Patch3:		https://src.fedoraproject.org/rpms/libtar/raw/rawhide/f/libtar-1.2.20-fix-resource-leaks.patch
+Patch4:		https://src.fedoraproject.org/rpms/libtar/raw/rawhide/f/libtar-1.2.11-bz729009.patch
+Patch5:		https://src.fedoraproject.org/rpms/libtar/raw/rawhide/f/libtar-1.2.20-no-static-buffer.patch
+# fix programming mistakes detected by static analysis
+Patch6:		https://src.fedoraproject.org/rpms/libtar/raw/rawhide/f/libtar-1.2.20-static-analysis.patch
 BuildRequires:	pkgconfig(zlib)
 Obsoletes:	%{name} <= 1.2.11-16
 
@@ -30,7 +30,6 @@ Here are some of its features:
   * API provides functions for easy use, such as tar_extract_all().
   * Also provides functions for more granular use, such as 
     tar_append_regfile().
-
 
 %files
 %{_bindir}/libtar
@@ -50,38 +49,39 @@ build applications with libtar.
 %files -n %{sdevname}
 %doc README ChangeLog* COPYRIGHT TODO
 %{_libdir}/libtar.a
+
 #----------------------------------------------------------------------------
-%package -n	%libname
+%package -n %{libname}
 Summary:	Shared library for %{name}
 Group:		System/Libraries
 
-%description -n %libname
+%description -n %{libname}
 This package contains the shared library for %{name}.
 
 %files -n %{libname}
 %{_libdir}/libtar.so.%{major}
 %{_libdir}/libtar.so.%{major}.*
+
 #----------------------------------------------------------------------------
-%package -n	%develname
+%package -n %{develname}
 Summary:	Development files and headers for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Obsoletes:	%{name}-devel < %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %develname
+%description -n %{develname}
 This package contains the shared library and the C headers needed to
 build applications with libtar.
 
 %files -n %{develname}
 %{_libdir}/libtar.so
 %{_includedir}/libtar*.h
-%{_mandir}/man3/*.3*
+%doc %{_mandir}/man3/*.3*
 
 #----------------------------------------------------------------------------
 %prep
-%setup -qn %{name}
-%autopatch -p1
+%autosetup -n %{name} -p1
 
 %build
 # set correct version for .so build
@@ -89,11 +89,15 @@ build applications with libtar.
 sed -i 's/-rpath $(libdir)/-rpath $(libdir) -version-number %{ltversion}/' \
   lib/Makefile.in
 
-autoreconf -fiv
+autoreconf -iv
 
 export CFLAGS="%{optflags} -fPIC"
-%configure2_5x --enable-static
-%make
+%configure --enable-static
+%make_build
 
 %install
-%makeinstall_std
+%make_install
+
+# Without this we get no debuginfo and stripping
+chmod +x %{buildroot}%{_libdir}/libtar.so.*
+rm %{buildroot}%{_libdir}/*.la
