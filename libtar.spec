@@ -10,7 +10,7 @@ Version:	1.2.20
 Release:	14
 License:	BSD
 Group:		System/Libraries
-Url:		http://www.feep.net/libtar/
+Url:		https://www.feep.net/libtar/
 Source0:	ftp://ftp.feep.net/pub/software/libtar/%{name}-%{version}.tar.gz
 Patch1:		https://src.fedoraproject.org/rpms/libtar/raw/rawhide/f/libtar-1.2.11-missing-protos.patch
 Patch2:		https://src.fedoraproject.org/rpms/libtar/raw/rawhide/f/libtar-1.2.11-mem-deref.patch
